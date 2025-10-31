@@ -5,6 +5,7 @@ const UserController = require('../../controllers/user-controller')
 
 
 router.post('/user',UserController.create)
+router.delete('/user/:id',UserController.destroy)
 
 
 
