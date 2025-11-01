@@ -45,6 +45,26 @@ const destroy = async(req,res) => {
     }
 }
 
+const signin = async(req,res) => {
+    try {
+        const user = await userService.signin(req.body.email,req.body.password)
+        return res.status(200).json({
+            data : user,
+            success : true,
+            message : "Successfully signed in !",
+            err : {}
+        })
+    } catch (error) {
+        console.log("Something went wrong in the controller");
+        return res.status(500).json({
+            data : {},
+            success : false,
+            message : "Cannot signin",
+            err : error
+        })
+    }
+}
+
 module.exports = {
-    create,destroy
+    create,destroy,signin
 }
