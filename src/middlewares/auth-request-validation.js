@@ -10,6 +10,18 @@ function validateUserAuth(req,res,next){
     next()
 }
 
+function validaterole(req,res,next){
+    if(!req.body.id){
+         return res.status(400).json({
+            success : false,
+            data : {},
+            message : "Something went wrong",
+            err : "UserId missing in the request"
+        })
+    }
+    next()
+}
+
 module.exports = {
-    validateUserAuth
+    validateUserAuth,validaterole
 }

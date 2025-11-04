@@ -86,6 +86,26 @@ const isAuthenticated = async(req,res) => {
     }
 }
 
+const isAdmin = async(req,res) => {
+    try {
+        const response = await userService.isAdmin(req.body.id)
+        return res.status(200).json({
+            data : response,
+            success : true,
+            message : "Role Authenticated!",
+            err : {}
+        })
+    } catch (error) {
+         console.log("Something went wrong in the controller");
+        return res.status(500).json({
+            data : {},
+            success : false,
+            message : "Cannot authenticate role",
+            err : error
+        })
+    }
+}
+
 module.exports = {
-    create,destroy,signin,isAuthenticated
+    create,destroy,signin,isAuthenticated,isAdmin
 }
