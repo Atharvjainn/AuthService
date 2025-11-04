@@ -19,8 +19,8 @@ const create = async (req,res) => {
         return res.status(500).json({
             data : {},
             success : false,
-            message : "Cannot create a user",
-            err : error
+            message : error.message,
+            err : error.description
         })
     }
 }
@@ -56,11 +56,11 @@ const signin = async(req,res) => {
         })
     } catch (error) {
         console.log("Something went wrong in the controller");
-        return res.status(500).json({
+        return res.status(error.statusCode).json({
             data : {},
             success : false,
-            message : "Cannot signin",
-            err : error
+            message : error.message,
+            err : error.description
         })
     }
 }
